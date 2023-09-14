@@ -4,6 +4,8 @@ import queries as q
 import pandas as pd
 
 # DB Connect function
+
+
 def connect_to_db(db_name='rpg_db.sqlite3'):
     return sqlite3.connect(db_name)
 
