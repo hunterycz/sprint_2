@@ -1,4 +1,4 @@
-SELECT_ALL = 'SELECT  character_id, name FROM charactercreator_character;'
+GET_CHARACTERS = 'SELECT * FROM charactercreator_character;'
 
 AVG_ITEM_PER_CHARACTER = '''
 SELECT cc_char.name, AVG(ai.weight)
@@ -68,7 +68,53 @@ ON cc_char.character_id = cc_inv.character_id
 GROUP BY cc_char.character_id)
 '''
 
-QUERY_LIST = [SELECT_ALL, AVG_ITEM_PER_CHARACTER, TOTAL_CHARACTERS,
+QUERY_LIST = [GET_CHARACTERS, AVG_ITEM_PER_CHARACTER, TOTAL_CHARACTERS,
               TOTAL_NECROMANCERS, TOTAL_ITEMS, WEAPONS, NON_WEAPONS,
               CHARACTER_ITEMS, CHARACTER_WEAPONS, AVG_CHARACTER_ITEMS,
               AVG_CHARACTER_WEAPONS]
+
+
+CREATE_TEST_TABLE = '''
+CREATE TABLE IF NOT EXISTS test_table
+(
+    "id" SERIAL NOT NULL PRIMARY KEY,
+    "name" VARCHAR(200) NOT NULL,
+    "age" INT NOT NULL,
+    "country_of_origin" VARCHAR(200)
+);
+'''
+
+INSERT_TEST_TABLE = '''
+INSERT INTO test_table ("name", "age", "country_of_origin")
+VALUES ('Ryan Allred', 30, 'USA');
+'''
+
+DROP_TEST_TABLE = '''
+DROP TABLE IF EXISTS test_table
+'''
+
+CREATE_CHARACTER_TABLE = '''
+    CREATE TABLE IF NOT EXISTS characters
+    (
+    "character_id" SERIAL NOT NULL PRIMARY KEY,
+    "name" VARCHAR(30),
+    "level" INT NOT NULL,
+    "exp" INT NOT NULL,
+    "hp" INT NOT NULL,
+    "strength" INT NOT NULL,
+    "intelligence" INT NOT NULL,
+    "dexterity" INT NOT NULL,
+    "wisdom" INT NOT NULL
+    );
+    '''
+
+INSERT_HUNTER = '''
+INSERT INTO characters ("name", "level", "exp", "hp",
+                        "strength", "intelligence",
+                        "dexterity", "wisdom")
+VALUES ('Hunter Peterson', 100, 100, 1000, 9000, 4, -5, 12)
+'''
+
+DROP_CHARACTER_TABLE = '''
+DROP TABLE IF EXISTS characters
+'''
