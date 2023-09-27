@@ -21,8 +21,9 @@ def execute_q(conn, query):
 
 if __name__ == '__main__':
     conn = connect_to_db()
-    results = execute_q(conn, q.AVG_ITEM_PER_CHARACTER)
-    df = pd.DataFrame(results)
-    df.columns = ['name', 'average_item_weight']
-    print(df.head())
-    df.to_csv('rpg_db.csv', index=False)
+    print(execute_q(conn, q.GET_CHARACTERS)[:2])
+    # results = execute_q(conn, q.GET_CHARACTERS)
+    # df = pd.DataFrame(results)
+    # df.columns = ['name', 'average_item_weight']
+    # print(df.head())
+    # df.to_csv('rpg_db.csv', index=False)
